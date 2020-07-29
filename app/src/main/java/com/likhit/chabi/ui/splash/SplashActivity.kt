@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import com.likhit.chabi.R
 import com.likhit.chabi.databinding.ActivitySplashBinding
 import com.likhit.chabi.utils.launchHomeActivity
-import com.likhit.chabi.utils.launchSplashActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -19,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun startTimer() {
-        activitySplashBinding.root.postDelayed(Runnable {
+        activitySplashBinding.root.postDelayed({
             launchHomeActivity(this@SplashActivity)
             finish()
         }, 250)
