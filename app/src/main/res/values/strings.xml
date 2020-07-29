@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Chabi</string>
     <string name="default_content_description">default_content_description</string>
+    <string name="tab_item">Tab Item</string>
 </resources>
