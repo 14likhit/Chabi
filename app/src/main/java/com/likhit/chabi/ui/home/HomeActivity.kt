@@ -83,12 +83,12 @@ class HomeActivity : BaseActivity() {
         val view = tab!!.customView
         if ((view as ViewGroup).children.elementAt(0) is AppCompatImageView) {
             val image: AppCompatImageView =
-                (view as ViewGroup).children.elementAt(0) as AppCompatImageView
+                view.children.elementAt(0) as AppCompatImageView
             image.colorFilter = porterDuffColorFilterUnselected
         }
-        if ((view as ViewGroup).children.elementAt(1) is AppCompatTextView) {
+        if (view.children.elementAt(1) is AppCompatTextView) {
             val text: AppCompatTextView =
-                (view as ViewGroup).children.elementAt(1) as AppCompatTextView
+                view.children.elementAt(1) as AppCompatTextView
             text.setTextColor(resources.getColor(R.color.colorThirdText))
         }
     }
@@ -100,10 +100,10 @@ class HomeActivity : BaseActivity() {
         val view = tab!!.customView
         if ((view as ViewGroup).children.elementAt(0) is AppCompatImageView) {
             val image: AppCompatImageView =
-                (view as ViewGroup).children.elementAt(0) as AppCompatImageView
+                view.children.elementAt(0) as AppCompatImageView
             image.colorFilter = porterDuffColorFilterSelected
         }
-        if ((view as ViewGroup).children.elementAt(1) is AppCompatTextView) {
+        if (view.children.elementAt(1) is AppCompatTextView) {
             val text: AppCompatTextView =
                 (view as ViewGroup).children.elementAt(1) as AppCompatTextView
             text.setTextColor(resources.getColor(R.color.colorPrimary))
