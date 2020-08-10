@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.likhit.chabi.R
+import androidx.recyclerview.widget.GridLayoutManager
+import com.likhit.chabi.adapter.AppsListRecyclerAdapter
 import com.likhit.chabi.base.BaseFragment
+import com.likhit.chabi.databinding.FragmentHomeBinding
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +26,9 @@ class HomeFragment : BaseFragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentHomeBinding
+    private var appsAdapter: AppsListRecyclerAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,7 +42,21 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun initViews(view: View) {
+        super.initViews(view)
+
+        if (appsAdapter == null) {
+            appsAdapter = AppsListRecyclerAdapter()
+        }
+
+        binding.homeContainerLinearLayout.app_list_recycler_view.layoutManager =
+            GridLayoutManager(activity, 2)
+        binding.homeContainerLinearLayout.app_list_recycler_view.adapter =
+            appsAdapter
     }
 
     companion object {
