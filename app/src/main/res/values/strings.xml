@@ -4,4 +4,5 @@
     <string name="tab_item">Tab Item</string>
     <string name="sample_text">Sample Text</string>
     <string name="save">Save</string>
+    <string name="sample_app_text">Sample App Text</string>
 </resources>
