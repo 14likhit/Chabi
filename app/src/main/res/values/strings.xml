@@ -6,4 +6,5 @@
     <string name="save">Save</string>
     <string name="sample_app_text">Sample App Text</string>
     <string name="sign_in">Sign In</string>
+    <string name="sample_message_text">Sample Message Text</string>
 </resources>
