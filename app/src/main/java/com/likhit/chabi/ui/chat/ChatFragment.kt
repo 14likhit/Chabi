@@ -1,12 +1,16 @@
 package com.likhit.chabi.ui.chat
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.likhit.chabi.R
 import com.likhit.chabi.base.BaseFragment
+import com.likhit.chabi.databinding.FragmentChatBinding
+import com.likhit.chabi.utils.FirebaseAuthenticationHelper
+import com.likhit.chabi.utils.RC_SIGN_IN
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +27,8 @@ class ChatFragment : BaseFragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentChatBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -36,7 +42,48 @@ class ChatFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        binding = FragmentChatBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun initViews(view: View) {
+        super.initViews(view)
+
+        setViewForUser()
+    }
+
+    private fun setViewForUser() {
+        if (FirebaseAuthenticationHelper.checkUserLoggedIn()) {
+            setUpChatView()
+        } else {
+            setUpSignInView()
+        }
+    }
+
+    private fun setUpSignInView() {
+        binding.signInButton.setOnClickListener {
+            FirebaseAuthenticationHelper.launchUserAuthenticationUI(this)
+        }
+        toggleView(false)
+    }
+
+
+    private fun setUpChatView() {
+        toggleView(true)
+    }
+
+    private fun toggleView(isUserLoggedIn: Boolean) {
+        binding.signInButton.visibility = if (isUserLoggedIn) View.GONE else View.VISIBLE
+        binding.chatLayout.chatContainerConstraintLayout.visibility =
+            if (isUserLoggedIn) View.VISIBLE else View.GONE
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == RC_SIGN_IN) {
+            FirebaseAuthenticationHelper.saveFirebaseUser()
+            setViewForUser()
+        }
     }
 
     companion object {

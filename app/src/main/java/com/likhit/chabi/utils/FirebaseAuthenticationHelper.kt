@@ -1,6 +1,7 @@
 package com.likhit.chabi.utils
 
 import android.app.Activity
+import androidx.fragment.app.Fragment
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -27,7 +28,7 @@ object FirebaseAuthenticationHelper {
     }
 
     fun checkUserLoggedIn(): Boolean {
-        val storedUser = PreferenceHelper.getUser()
+        val storedUser = PreferenceHelper.getFirebaseUid()
         return storedUser != null
     }
 
@@ -35,6 +36,18 @@ object FirebaseAuthenticationHelper {
 
     fun launchUserAuthenticationUI(activity: Activity) {
         activity.startActivityForResult(
+            AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setLogo(R.drawable.ic_logo)
+                .setTheme(R.style.LoginTheme)
+                .build(),
+            RC_SIGN_IN
+        )
+    }
+
+    fun launchUserAuthenticationUI(fragment: Fragment) {
+        fragment.startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
@@ -53,6 +66,11 @@ object FirebaseAuthenticationHelper {
             .addOnCompleteListener {
                 // ...
             }
+    }
+
+    fun saveFirebaseUser() {
+        mFirebaseUser = mFirebaseAuth.currentUser
+        PreferenceHelper.saveFirebaseUid(mFirebaseUser?.uid)
     }
 
 }
