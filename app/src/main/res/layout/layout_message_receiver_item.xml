@@ -9,7 +9,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/message_card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/message_item_container_constraint_layout"
@@ -30,9 +31,9 @@
                 android:id="@+id/message_text_view"
                 android:layout_width="@dimen/dimen_200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:layout_marginStart="@dimen/dimen_16dp"
                 android:text="@string/sample_message_text"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 app:layout_constraintStart_toEndOf="@id/user_image_view"
                 app:layout_constraintTop_toTopOf="parent" />
 

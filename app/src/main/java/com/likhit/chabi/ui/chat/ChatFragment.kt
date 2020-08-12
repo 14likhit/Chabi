@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.likhit.chabi.base.BaseFragment
 import com.likhit.chabi.data.FirebaseMessage
 import com.likhit.chabi.databinding.FragmentChatBinding
-import com.likhit.chabi.databinding.LayoutMessageSenderItemBinding
+import com.likhit.chabi.databinding.LayoutItemMessageBinding
 import com.likhit.chabi.utils.FirebaseAuthenticationHelper
 import com.likhit.chabi.utils.RC_SIGN_IN
 
@@ -40,7 +40,7 @@ class ChatFragment : BaseFragment() {
     private lateinit var binding: FragmentChatBinding
 
     private lateinit var mFirebaseDatabaseReference: DatabaseReference
-    private lateinit var mFirebaseAdapter: FirebaseRecyclerAdapter<FirebaseMessage, MessageSenderViewHolder>
+    private lateinit var mFirebaseAdapter: FirebaseRecyclerAdapter<FirebaseMessage, MessageViewHolder>
     private var mLinearLayoutManager: LinearLayoutManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -135,24 +135,53 @@ class ChatFragment : BaseFragment() {
 
     private fun setFirebaseAdapter(options: FirebaseRecyclerOptions<FirebaseMessage>) {
         mFirebaseAdapter =
-            object : FirebaseRecyclerAdapter<FirebaseMessage, MessageSenderViewHolder>(options) {
+            object : FirebaseRecyclerAdapter<FirebaseMessage, MessageViewHolder>(options) {
                 override fun onCreateViewHolder(
                     parent: ViewGroup,
                     viewType: Int
-                ): MessageSenderViewHolder {
-                    return MessageSenderViewHolder(
-                        LayoutMessageSenderItemBinding.inflate(
+                ): MessageViewHolder {
+                    return MessageViewHolder(
+                        LayoutItemMessageBinding.inflate(
                             LayoutInflater.from(parent.context), parent, false
                         )
                     )
                 }
 
                 override fun onBindViewHolder(
-                    holder: MessageSenderViewHolder,
+                    holder: MessageViewHolder,
                     position: Int,
                     model: FirebaseMessage
                 ) {
-                    holder.layoutMessageSenderItemBinding.messageTextView.text = model.text
+                    //todo->Add admin user logic
+                    if (model.name!!.toLowerCase() == "likhit") {
+                        setMessageSenderLayout(holder, model)
+                    } else {
+                        setMessageReceiverLayout(holder, model)
+                    }
+                }
+
+                private fun setMessageSenderLayout(
+                    holder: MessageViewHolder,
+                    model: FirebaseMessage
+                ) {
+                    holder.layoutItemMessageBinding.messageReceiverLayout.messageCardView.visibility =
+                        View.GONE
+                    holder.layoutItemMessageBinding.messageSenderLayout.messageCardView.visibility =
+                        View.VISIBLE
+                    holder.layoutItemMessageBinding.messageSenderLayout.messageTextView.text =
+                        model.text
+                }
+
+                private fun setMessageReceiverLayout(
+                    holder: MessageViewHolder,
+                    model: FirebaseMessage
+                ) {
+                    holder.layoutItemMessageBinding.messageSenderLayout.messageCardView.visibility =
+                        View.GONE
+                    holder.layoutItemMessageBinding.messageReceiverLayout.messageCardView.visibility =
+                        View.VISIBLE
+                    holder.layoutItemMessageBinding.messageReceiverLayout.messageTextView.text =
+                        model.text
                 }
 
             }
