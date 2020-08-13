@@ -28,6 +28,12 @@
         <activity
             android:name=".ui.language.LanguageSelectionActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.content.AppAnswerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.content.AppQuestionsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
