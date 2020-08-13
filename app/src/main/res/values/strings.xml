@@ -9,4 +9,5 @@
     <string name="sample_message_text">Sample Message Text</string>
     <string name="send">SEND</string>
     <string name="sample_question">Sample Question Text Will Be Added?</string>
+    <string name="sample_step">Open the app and search for the item that you’re looking to buy on the app.</string>
 </resources>
