@@ -26,9 +26,10 @@ class HomeViewPager(private val fragmentActivity: FragmentActivity) :
         mFragmentList.add(HomeFragment.newInstance())
         mFragmentTitleList.add("Home")
         mFragmentIconList.add(R.drawable.ic_home)
-        mFragmentList.add(BookMarkFragment.newInstance())
-        mFragmentTitleList.add("Bookmarks")
-        mFragmentIconList.add(R.drawable.ic_bookmark)
+        //todo->Commenting bookmark thing for now.
+//        mFragmentList.add(BookMarkFragment.newInstance())
+//        mFragmentTitleList.add("Bookmarks")
+//        mFragmentIconList.add(R.drawable.ic_bookmark)
         mFragmentList.add(ChatFragment.newInstance())
         mFragmentTitleList.add("Chat")
         mFragmentIconList.add(R.drawable.ic_chat)
