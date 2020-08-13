@@ -8,4 +8,5 @@
     <string name="sign_in">Sign In</string>
     <string name="sample_message_text">Sample Message Text</string>
     <string name="send">SEND</string>
+    <string name="sample_question">Sample Question Text Will Be Added?</string>
 </resources>
