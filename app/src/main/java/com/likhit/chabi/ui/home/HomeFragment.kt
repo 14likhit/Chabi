@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.likhit.chabi.adapter.AppsListRecyclerAdapter
 import com.likhit.chabi.base.BaseFragment
+import com.likhit.chabi.custom.OnItemClickListener
+import com.likhit.chabi.data.AppQuestion
 import com.likhit.chabi.databinding.FragmentHomeBinding
+import com.likhit.chabi.utils.launchAppQuestionsActivity
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,7 +24,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), OnItemClickListener<AppQuestion> {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -50,7 +53,7 @@ class HomeFragment : BaseFragment() {
         super.initViews(view)
 
         if (appsAdapter == null) {
-            appsAdapter = AppsListRecyclerAdapter()
+            appsAdapter = AppsListRecyclerAdapter(this)
         }
 
         binding.homeContainerLinearLayout.app_list_recycler_view.layoutManager =
@@ -77,5 +80,9 @@ class HomeFragment : BaseFragment() {
 //                    putString(ARG_PARAM2, param2)
 //                }
             }
+    }
+
+    override fun onItemClick(item: AppQuestion, position: Int, view: View?) {
+        launchAppQuestionsActivity(getBaseActivity()!!)
     }
 }

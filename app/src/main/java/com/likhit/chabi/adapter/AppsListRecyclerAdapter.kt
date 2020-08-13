@@ -3,12 +3,14 @@ package com.likhit.chabi.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.likhit.chabi.custom.OnItemClickListener
+import com.likhit.chabi.data.AppQuestion
 import com.likhit.chabi.databinding.LayoutItemAppCardBinding
 
 /**
  * Adapter for Apps list.
  */
-class AppsListRecyclerAdapter :
+class AppsListRecyclerAdapter(val onItemClickListener: OnItemClickListener<AppQuestion>) :
     RecyclerView.Adapter<AppsListRecyclerAdapter.AppsListViewHolder>() {
 
     //todo->Add list holder for Apps List.
@@ -34,6 +36,9 @@ class AppsListRecyclerAdapter :
         holder: AppsListViewHolder,
         position: Int
     ) {
+        holder.binding.appCardView.setOnClickListener {
+            onItemClickListener.onItemClick(AppQuestion(), position, it)
+        }
     }
 
     class AppsListViewHolder(val binding: LayoutItemAppCardBinding) :
