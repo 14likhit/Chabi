@@ -9,7 +9,8 @@
         android:id="@+id/profile_nested_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/profile_container_linear_layout"
