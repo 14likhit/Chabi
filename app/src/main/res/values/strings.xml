@@ -10,4 +10,9 @@
     <string name="send">SEND</string>
     <string name="sample_question">Sample Question Text Will Be Added?</string>
     <string name="sample_step">Open the app and search for the item that you’re looking to buy on the app.</string>
+    <string name="user_sample_name">User Sample Name</string>
+    <string name="user_sample_email">User Sample Email</string>
+    <string name="user_sample_phone">User Sample Phone</string>
+    <string name="title_language">Language</string>
+    <string name="sample_language_english">English</string>
 </resources>
