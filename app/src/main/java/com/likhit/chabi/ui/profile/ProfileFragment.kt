@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.likhit.chabi.R
 import com.likhit.chabi.base.BaseFragment
 import com.likhit.chabi.databinding.FragmentProfileBinding
 import com.likhit.chabi.utils.FirebaseAuthenticationHelper
 import com.likhit.chabi.utils.launchLanguageSelectionActivity
+import com.likhit.chabi.utils.loadImage
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,6 +67,17 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun setUpProfileView() {
+        val userDetails = FirebaseAuthenticationHelper.getLoggedInUser()
+        loadImage(
+            getBaseActivity()!!,
+            userDetails!!.photoUrl.toString(),
+            R.drawable.ic_person,
+            R.drawable.ic_person,
+            binding.profileLayout.userDetailsCardLayout.userProfileImageView
+        )
+        binding.profileLayout.userDetailsCardLayout.userNameTextView.text = userDetails.displayName
+        binding.profileLayout.userDetailsCardLayout.userEmailTextView.text = userDetails.email
+        binding.profileLayout.userDetailsCardLayout.userPhoneTextView.text = userDetails.phoneNumber
         binding.profileLayout.userSettingsCardLayout.languageSelectionMenu.selectedOptionMenuConstraintLayout.setOnClickListener {
             launchLanguageSelectionActivity(getBaseActivity()!!)
         }
