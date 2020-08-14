@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.likhit.chabi.R
 import com.likhit.chabi.base.BaseFragment
 import com.likhit.chabi.databinding.FragmentProfileBinding
 import com.likhit.chabi.utils.FirebaseAuthenticationHelper
+import com.likhit.chabi.utils.launchLanguageSelectionActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,7 +51,7 @@ class ProfileFragment : BaseFragment() {
 
     private fun setViewForUser() {
         if (FirebaseAuthenticationHelper.checkUserLoggedIn()) {
-            setUpChatView()
+            setUpProfileView()
         } else {
             setUpSignInView()
         }
@@ -65,7 +64,10 @@ class ProfileFragment : BaseFragment() {
         toggleView(false)
     }
 
-    private fun setUpChatView() {
+    private fun setUpProfileView() {
+        binding.profileLayout.userSettingsCardLayout.languageSelectionMenu.selectedOptionMenuConstraintLayout.setOnClickListener {
+            launchLanguageSelectionActivity(getBaseActivity()!!)
+        }
         toggleView(true)
     }
 

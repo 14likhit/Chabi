@@ -5,6 +5,7 @@ import android.content.Intent
 import com.likhit.chabi.ui.content.AppAnswerActivity
 import com.likhit.chabi.ui.content.AppQuestionsActivity
 import com.likhit.chabi.ui.home.HomeActivity
+import com.likhit.chabi.ui.language.LanguageSelectionActivity
 import com.likhit.chabi.ui.splash.SplashActivity
 
 /**
@@ -28,5 +29,10 @@ fun launchAppQuestionsActivity(activity: Activity) {
 
 fun launchAppAnswerActivity(activity: Activity) {
     val intent = Intent(activity, AppAnswerActivity::class.java)
+    activity.startActivity(intent)
+}
+
+fun launchLanguageSelectionActivity(activity: Activity) {
+    val intent = Intent(activity, LanguageSelectionActivity::class.java)
     activity.startActivity(intent)
 }

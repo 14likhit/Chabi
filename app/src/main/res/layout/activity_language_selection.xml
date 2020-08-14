@@ -8,7 +8,7 @@
     </data>
 
     <RelativeLayout
-        android:id="@+id/language_selection_linear_layout"
+        android:id="@+id/language_selection_realtive_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -21,7 +21,7 @@
             tools:listitem="@layout/layout_item_text_divider" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:id="@+id/save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
